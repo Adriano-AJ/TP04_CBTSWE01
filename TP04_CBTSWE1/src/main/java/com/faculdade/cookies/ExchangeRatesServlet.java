@@ -22,15 +22,21 @@ public class ExchangeRatesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Optional<Cookie> op = Arrays.stream(req.getCookies())
-                                    .filter(c -> currencyPairKey.equals(c.getName()))
-                                    .findAny();
-        if (op.isPresent()) {
-            showCurrencyRate(resp, op.get().getValue());
-        } else {
-            RequestDispatcher rd = req.getRequestDispatcher("/currencySelection.html");
-            rd.forward(req, resp);
+        
+        Cookie[] cookies = req.getCookies();
+        
+        if (cookies != null) {
+            Optional<Cookie> op = Arrays.stream(cookies)
+                                        .filter(c -> currencyPairKey.equals(c.getName()))
+                                        .findAny();
+            if (op.isPresent()) {
+                showCurrencyRate(resp, op.get().getValue());
+                return; 
+            }
         }
+        
+        RequestDispatcher rd = req.getRequestDispatcher("/currencySelection.html");
+        rd.forward(req, resp);
     }
 
     private static void showCurrencyRate(HttpServletResponse resp, String currencyPair)
