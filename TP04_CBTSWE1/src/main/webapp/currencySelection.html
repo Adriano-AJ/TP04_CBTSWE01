@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Moedas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <h2>Cotação de Moedas</h2>
+        <p>Selecione o par de moedas que deseja acompanhar:</p>
+
+        <form method="post" action="save-exchange-rates-pair">
+            <div class="currency-options">
+                <label>
+                    <input type="radio" name="currencyPair" value="USD/EUR" required>
+                    USD / EUR
+                </label>
+                <label>
+                    <input type="radio" name="currencyPair" value="USD/CAD">
+                    USD / CAD
+                </label>
+                <label>
+                    <input type="radio" name="currencyPair" value="USD/AUD">
+                    USD / AUD
+                </label>
+            </div>
+            <button type="submit" class="btn">Confirmar</button>
+        </form>
+
+        <a href="Creditos.html" class="credits-link">Ver créditos da dupla</a>
+    </div>
+</body>
+</html>
